@@ -5,6 +5,8 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import useAuthenticator from '../../store/useAuthenticatorStore';
 import useCardDetailsStore from '../../store/useCardDetailsStore';
+import FontistoIcon from 'react-native-vector-icons/Fontisto';
+
 
 const HomeScreen = ({ navigation }) => {
     const { setAuthenticator } = useAuthenticator();
@@ -27,7 +29,6 @@ const HomeScreen = ({ navigation }) => {
     }, [cardDetails])
 
     const goToCardDetails = (item) => {
-        console.log("ddddd", item)
         navigation.navigate('Card Details', { cardDetails: item })
     }
 
@@ -36,21 +37,9 @@ const HomeScreen = ({ navigation }) => {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1, alignItems: 'center' }}>
             <View style={styles.sectionContainer}>
                 <TouchableOpacity
-                    style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#ff1a1a', paddingHorizontal: 8, height: 30, borderRadius: 7, marginRight: 3 }}>
-                    <FeatherIcon name="map-pin" size={20} color="#fff" />
-                    <Text style={{ marginLeft: 5, color: '#fff' }}>Map</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('Add Card')}
-                    style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#ff1a1a', paddingHorizontal: 8, height: 30, borderRadius: 7, marginLeft: 3, marginRight: 3 }}>
-                    <IoniconsIcon name="add" size={20} color="#fff" />
-                    <Text style={{ marginLeft: 5, color: '#fff' }}>Add Card</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => setAuthenticator({ isAuthenticator: false, userName: '' })}
                     style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#ff1a1a', paddingHorizontal: 8, height: 30, borderRadius: 7, marginLeft: 3 }}>
-                    <EntypoIcon name="log-out" size={20} color="#fff" />
-                    <Text style={{ marginLeft: 5, color: '#fff' }}>Log Out</Text>
+                    <FontistoIcon name="bus-ticket" size={20} color="#fff" />
+                    <Text style={{ marginLeft: 5, color: '#fff' }}>Active Ticket</Text>
                 </TouchableOpacity>
             </View>
             <View style={{ flex: 1, width: '100%', padding: 15 }}>
@@ -79,15 +68,34 @@ const HomeScreen = ({ navigation }) => {
                     )
                 }
             </View>
-
+            <View style={styles.bottomNavigation}>
+                <TouchableOpacity
+                    style={styles.bottomNavigationItem}>
+                    <FeatherIcon name="map-pin" size={20} color="#fff" />
+                    <Text style={{ marginLeft: 5, color: '#fff' }}>Map</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Add Card')}
+                    style={styles.bottomNavigationItem}>
+                    <IoniconsIcon name="add" size={20} color="#fff" />
+                    <Text style={{ marginLeft: 5, color: '#fff' }}>Add Card</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => setAuthenticator({ isAuthenticator: false, userName: '' })}
+                    style={styles.bottomNavigationItem}>
+                    <EntypoIcon name="log-out" size={20} color="#fff" />
+                    <Text style={{ marginLeft: 5, color: '#fff' }}>Log Out</Text>
+                </TouchableOpacity>
+            </View>
         </KeyboardAvoidingView >
     );
 };
 
 const styles = StyleSheet.create({
     sectionContainer: {
+        alignItems: 'flex-start',
         flexDirection: 'row',
-        padding: 10
+        padding: 10,
     },
     input: {
         height: 40,
@@ -113,6 +121,23 @@ const styles = StyleSheet.create({
     },
     searchIcon: {
         marginRight: 8,
+    },
+    bottomNavigation: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        backgroundColor: '#ff1a1a',
+        paddingVertical: 10,
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
+    },
+    bottomNavigationItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 8,
+        height: 30,
+        borderRadius: 7,
     },
 });
 

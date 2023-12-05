@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList, KeyboardAvoidingView, Button } from 'react-native';
 import useCardDetailsStore from '../../store/useCardDetailsStore';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import EntypoIcon from 'react-native-vector-icons/Entypo';
+
 
 const AddCard = ({ navigation }) => {
     const { addCard } = useCardDetailsStore();
@@ -40,6 +42,7 @@ const AddCard = ({ navigation }) => {
         <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1, alignItems: 'center' }}>
             <View style={{ marginTop: 80, width: '100%', padding: 20 }}>
+                <EntypoIcon name="v-card" size={60} color="grey" />
                 <View>
                     <TextInput
                         style={styles.input}
